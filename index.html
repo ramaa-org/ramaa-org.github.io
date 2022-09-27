@@ -1,7 +1,53 @@
-The Semi-Enlightened Seeker
+<!doctype html>
+<html>
+<head>
+    <title>Our Funky HTML Page</title>
+    <meta name="description" content="Our first page">
+    <meta name="keywords" content="html tutorial template">
 
-<form action="http://formspree.io/ian@ramaa.org" method="post">
-    <input type="email" name="_replyto">
-    <textarea   name="body"></textarea>
-    <input type="submit" value="Send">
-</form>
+    <script>
+        function emailForm() {
+            console.log("emailForm");
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://h4lwtpeeg8.execute-api.us-east-1.amazonaws.com/V0");
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    console.log(xhr.status);
+                    console.log(xhr.responseText);
+                }
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+            };
+            
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+
+            let data = {
+            "email": email,
+            "name": name
+            };
+
+            console.log(data);
+
+            xhr.send(JSON.stringify(data));
+        }
+    </script>
+</head>
+<body>
+    The Semi-Enlightened Seeker
+    <div>
+        <label for="email">Email</label>
+        <input type="text" name='email' id='email' />
+    </div>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name='name' id='name' />
+    </div>
+    <div>
+        <button onclick="emailForm()">Join</button>
+    </div>
+</body>
+</html>
