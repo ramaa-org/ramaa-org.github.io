@@ -1,53 +1,78 @@
 <!doctype html>
 <html>
 <head>
-    <title>Our Funky HTML Page</title>
+    <title>The Semi-Enlightened Seeker</title>
     <meta name="description" content="Our first page">
     <meta name="keywords" content="html tutorial template">
 
     <script>
         function emailForm() {
-            console.log("emailForm");
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "https://h4lwtpeeg8.execute-api.us-east-1.amazonaws.com/V0");
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     console.log(xhr.status);
                     console.log(xhr.responseText);
                 }
-                console.log(xhr.status);
-                console.log(xhr.responseText);
             };
             
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
-
             let data = {
-            "email": email,
-            "name": name
+                "email": email,
+                "name": name
             };
 
-            console.log(data);
-
             xhr.send(JSON.stringify(data));
+
+            document.getElementById("name").value = ""
+            document.getElementById("email").value = ""
         }
     </script>
 </head>
-<body>
-    The Semi-Enlightened Seeker
-    <div>
-        <label for="email">Email</label>
-        <input type="text" name='email' id='email' />
-    </div>
-    <div>
-        <label for="name">Name</label>
-        <input type="text" name='name' id='name' />
-    </div>
-    <div>
-        <button onclick="emailForm()">Join</button>
-    </div>
+<body style="font-family:'Courier New', monospace; margin: 25px">
+    <h2>The Semi-Enlightened Seeker</h2>
+    <br>
+    <center>
+    <h4>
+        "Your modern guide to enlightenment."
+    </h4>
+    </center>
+    <br>
+    <p>
+        Philosophy, practices and teachings of truth seekers and truth knowers. 
+        Through this podcast we hope to explore 
+        modern techniques for enlightenment, 
+        common sense holistic approaches for living, 
+        the similarities between all major religions,
+        how spirituality fits in with science, 
+        the value of surrendering to the greater whole,
+        why having faith is good for your health, and much much more!
+
+    </p>
+    <br>
+    <p>
+    </p>
+    <br>
+    <center style="float: bottom;">
+        <div>
+            <label for="name">Name</label>
+        </div>
+        <div>
+            <input type="text" name='name' id='name' />
+        </div>
+        <br>
+        <div>
+            <label for="email">Email</label>
+        <div>
+            <input type="text" name='email' id='email' />
+        </div>
+        </div>
+        <br>
+        <div>
+            <button id='button' onclick="emailForm()">Join</button>
+        </div>
+    </center>
 </body>
 </html>
